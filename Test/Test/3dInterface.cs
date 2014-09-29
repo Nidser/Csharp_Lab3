@@ -1,26 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Test
 {
-
     public interface IHasVolume
     {
-        void calcVolume();
+        double calcVolume();
     }
 
     public enum Color {Red, Green, Blue};
 
-    class Sphere : IHasVolume
+    public class Sphere : IHasVolume
     {
         public Color color {get;set;}
-        public double area { get; set; }
-
+       
         private double radius;
-        private int p;
+        private Color color1;
+        public double area { get; set; }
 
         public double Radius
         {
@@ -41,23 +36,34 @@ namespace Test
         }
 
         public Sphere(double r)
+            :this(Color.Blue)
         {
             radius = r;
         }
 
-        
-
-
-
-        public void calcVolume()
+        //Default Constructor
+        public Sphere()
+           : this(Color.Blue, 0.0)
         {
-            area = Math.PI * radius * radius * radius; 
 
+        }
+
+        public Sphere(Color color1)
+        {
+            // TODO: Complete member initialization
+            this.color1 = color1;
+        }
+
+
+        public double calcVolume()
+        {
+            area = Math.PI * radius * radius * radius;
+            return area;
         }
 
         public override string ToString()
         {
-            return base.ToString() + " the area of the circle is " + area + " which is " + Color.Blue+ " in colour";
+            return base.ToString() + ": The area of the circle is " + area + " which is " + Color.Blue+ " in colour";
         }
 
     }

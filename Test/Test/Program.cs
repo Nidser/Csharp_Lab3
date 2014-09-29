@@ -8,7 +8,7 @@ namespace Test
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
             Sphere s = new Sphere(Color.Blue, 22);
 
