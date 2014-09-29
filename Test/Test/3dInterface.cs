@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Test
 {
@@ -25,7 +26,14 @@ namespace Test
             }
             set
             {
-                radius = value;
+                if (value >= 0)
+                {
+                    radius = value;
+                }
+                else
+                {
+                    throw new ApplicationException("radius must be greater than zero");
+                }
             }
         }
 
@@ -55,7 +63,7 @@ namespace Test
         }
 
 
-        public double calcVolume()
+        public virtual double calcVolume()
         {
             area = Math.PI * radius * radius * radius;
             return area;
@@ -63,8 +71,19 @@ namespace Test
 
         public override string ToString()
         {
-            return base.ToString() + ": The area of the circle is " + area + " which is " + Color.Blue+ " in colour";
+            return "A Sphere of radius: " + radius.ToString() + " with an area of " + calcVolume().ToString("0.00", CultureInfo.InvariantCulture);  
+           // return base.ToString() + ": The area of the circle is " + area + " which is " + Color.Blue+ " in colour";
         }
 
+
+        /* Test class example of a for loop of Shape objects
+         * // collection of sphere objects referenced by HasVolume refs
+        Shape.IHasVolume[] collection = { new Shape.Sphere(), new Shape.Sphere(10) };
+
+        foreach (Shape.IHasVolume s in collection)
+        {
+            Console.WriteLine(s + " volume: " + s.CalcVolume());
+        }
+         * */
     }
 }
